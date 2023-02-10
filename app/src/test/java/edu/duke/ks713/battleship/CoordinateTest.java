@@ -2,6 +2,7 @@ package edu.duke.ks713.battleship;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+/**This class is about the test of the method sin coordinate class*/
 class CoordinateTest {
     /**
      * test the equals method in Coordinate and Placement class

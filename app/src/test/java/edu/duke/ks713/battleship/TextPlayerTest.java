@@ -2,10 +2,12 @@ package edu.duke.ks713.battleship;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import java.io.*;
-
+/**This method is about testing the functions is text player test, however, the functions in apptest does all the work, so here
+ * overlaps*/
 class TextPlayerTest {
+    /**This function tests the read placement function in TextPlayer class
+     * @throws IOException because needed when calling methods*/
     @Test
     void test_read_placement() throws IOException {
         StringReader s=new StringReader("B2V\nC8H\na4v\n");

@@ -1,7 +1,7 @@
 package edu.duke.ks713.battleship;
 
 import java.util.ArrayList;
-
+/**This interface have important functions of a board*/
 public interface Board<T>{
     /**Get the width of the board
      * @return return the width of the board*/

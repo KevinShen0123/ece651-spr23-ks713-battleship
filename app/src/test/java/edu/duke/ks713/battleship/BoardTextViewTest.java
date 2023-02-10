@@ -3,8 +3,14 @@ package edu.duke.ks713.battleship;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
+/**This class test the display of the board*/
 public class BoardTextViewTest {
+    /**This method serve as the helper of test in this class
+     * @param w the width of the board
+     * @param h the height of the board
+     * @param expectedHeader expected display result of the board header
+     * @param expectedBody expected display result of the board body
+     * @param ship_yes whether we need to create ship*/
     private void emptyTestHelper(int w, int h, String expectedHeader, String expectedBody,boolean ship_yes){
         Board<Character> b1 = new BattleShipBoard<Character>(w, h,'X');
         if(ship_yes){
@@ -71,6 +77,7 @@ public class BoardTextViewTest {
                         "E  | |  E\n";
         emptyTestHelper(3,5,expectedHeader,expectedBody,false);
     }
+    /**Test ship display*/
     @Test
     public void test_ship_display(){
        Board<Character> p=new BattleShipBoard<>(2,2,'X');
@@ -80,6 +87,7 @@ public class BoardTextViewTest {
                         "B  |  B\n";
         emptyTestHelper(2,2,expectedHeader,expectedBody,false);
     }
+    /**Test display enemy board*/
     @Test
     public void test_enemy_display(){
         Board<Character> p=new BattleShipBoard<>(2,2,'X');
@@ -89,6 +97,7 @@ public class BoardTextViewTest {
                         "B  |* B\n";
         emptyTestHelper(2,2,expectedHeader,expectedBody,true);
     }
+    /**Test display the two boards together*/
     @Test
     public void test_display_together(){
         Board<Character> p=new BattleShipBoard<>(10,20,'X');

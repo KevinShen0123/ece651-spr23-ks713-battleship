@@ -3,8 +3,11 @@ package edu.duke.ks713.battleship;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
+/**This class test the main functions in battleship board*/
 public class BattleShipBoardTest {
+    /**THis method show what is at board
+     * @param b  the board
+     * @param expect expect character distributions*/
     private void checkWhatIsAtBoard(Board<Character> b, char[][] expect){
         for(int i=0;i<expect.length;i++){
             for(int j=0;j<expect.length;j++){
@@ -34,6 +37,7 @@ public class BattleShipBoardTest {
         assertThrows(IllegalArgumentException.class, () -> new BattleShipBoard<Character>(1, -5,'X'));
         assertThrows(IllegalArgumentException.class, () -> new BattleShipBoard<Character>(-5, 1,'X'));
     }
+    /**Test the process of placing ships to the board*/
     @Test
     public void test_valid_place_ships(){
       Board<Character> battle=new BattleShipBoard<>(10,20,'X');
@@ -58,6 +62,7 @@ public class BattleShipBoardTest {
       assertEquals(info,sixth_cor);
       assertNull(battle.whatIsAt(new Coordinate(1,2),false));
     }
+    /**Test the handling of error cases when place ships to the board*/
     @Test
     public void test_invalid_place_ships(){
         Board<Character> battle=new BattleShipBoard<>(10,20,'X');
@@ -76,6 +81,7 @@ public class BattleShipBoardTest {
         assertNotNull(battle.tryAddShip(ship5));
         System.out.println(battle.tryAddShip(ship5));
     }
+    /**Test fire at and all sunk function*/
     @Test
     public void test_fire_at_and_all_sunk(){
         Board<Character> battle=new BattleShipBoard<>(10,20,'X');

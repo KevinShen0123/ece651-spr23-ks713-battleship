@@ -1,5 +1,5 @@
 package edu.duke.ks713.battleship;
-
+/**This class is about the construction of placement*/
 public class Placement {
     private final Coordinate where;
     private final char orientation;
@@ -32,25 +32,32 @@ public class Placement {
         }
         this.orientation=or;
     }
-    /**The getter method of the coordinate where*/
+    /**The getter method of the coordinate where*
+     * @return  the coordination of this placement
+     */
     public Coordinate getWhere(){
         return where;
     }
-    /**The getter method of the orientation*/
+    /**The getter method of the orientation
+     * @return return the orinetation of this placement*/
     public char getOrientation(){
         return orientation;
     }
-    /**The toString method of Placement class, similar to the toString method of Coordinate class*/
+    /**The toString method of Placement class, similar to the toString method of Coordinate class
+     * @return the information of the object as string
+     */
     @Override
     public String toString() {
         return "("+where.toString()+", " + orientation+")";
     }
-    /**The hashcode method of the Placement class*/
+    /**The hashcode method of the Placement class
+     * @return return the hashcode of the object*/
     @Override
     public int hashCode() {
         return toString().hashCode();
     }
-    /**The equals method of the Placement class, similar to Coordinate class*/
+    /**The equals method of the Placement class, similar to Coordinate class
+     * @return whether the two object are equal*/
     @Override
     public boolean equals(Object o) {
         if (o.getClass().equals(getClass())) {

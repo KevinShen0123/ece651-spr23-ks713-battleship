@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.StringReader;
 import java.io.BufferedReader;
+/**This class is responsible for testing the method in V1ShipFactory class*/
 class V1ShipFactoryTest {
+ /**This method is about testing the different make functions in V1ShipFactory class*/
 @Test
 public void first_test(){
     V1ShipFactory v1=new V1ShipFactory();
@@ -27,6 +29,7 @@ public void first_test(){
     assertEquals("Destroyer",d.getName());
     assertTrue(d.occupiesCoordinates(new Coordinate(3,2)));
 }
+/**This method is about testing make submarine methods*/
 @Test
 public void second_test(){
     V1ShipFactory v1=new V1ShipFactory();
@@ -35,6 +38,7 @@ public void second_test(){
     Ship<Character> s=v1.makeSubmarine(placement);
     assertTrue(s.occupiesCoordinates(new Coordinate(1,3)));
 }
+/**THis method is about testing the handling of invalid inputs*/
 @Test
 public void third_test(){
     V1ShipFactory v1=new V1ShipFactory();

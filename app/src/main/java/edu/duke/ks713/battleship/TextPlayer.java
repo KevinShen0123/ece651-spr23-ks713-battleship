@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.function.Function;
 
 import static java.lang.System.exit;
-
+/**THis class handles the play round for one player*/
 public class TextPlayer {
     final String name;
     final Board<Character> theBoard;
@@ -19,7 +19,12 @@ public class TextPlayer {
     final AbstractShipFactory<Character> shipFactory;
     final ArrayList<String> shipsToPlace;
     final HashMap<String, Function<Placement, Ship<Character>>> shipCreationFns;
-
+    /**Construct a player object for this battleship game
+     * @param name the name of the player
+     * @param theBoard  the borad belongs to the player
+     * @param  inputReader the inputReader of the whole system
+     * @param out The output stream
+     * @param shipFactory the class help us to make ship.*/
     public TextPlayer(String name,Board<Character>theBoard,BufferedReader inputReader,PrintStream out,AbstractShipFactory<Character> shipFactory){
         this.name=name;
         this.theBoard=theBoard;
@@ -31,6 +36,11 @@ public class TextPlayer {
         this.setupShipCreationMap();
         this.setupShipCreationList();
     }
+    /**This method reads the coordinate from the user input
+     * @param prompt the prompt to help user input
+     * @return return the coordinate constructed from user input.
+     * @throws EOFException when the reader meets EOF
+     * @throws IOException when IO error happens*/
     public Coordinate readCoordinate(String prompt) throws IOException{
         prompt=prompt.replaceAll("\r","");
         out.println(prompt);
@@ -40,6 +50,11 @@ public class TextPlayer {
         }
         return new Coordinate(s);
     }
+    /**This method reads the placement from the user input
+     * @param prompt the prompt to help user input
+     * @return return the placement constructed from user input.
+     * @throws EOFException when the reader meets EOF
+     * @throws IOException when IO error happens*/
     public Placement readPlacement(String prompt) throws IOException {
         prompt=prompt.replaceAll("\r","");
         out.println(prompt);
@@ -49,12 +64,12 @@ public class TextPlayer {
             throw new EOFException();
         }
         s=s.replaceAll("\r","");
-        System.out.println(s);
-        System.out.println(s.length());
         return new Placement(s);
     }
+    /**This method do the interactive placement phase with the user*/
     public void doPlacementPhase() throws IOException{
         BoardTextView btv1=new BoardTextView(theBoard);
+        out.println("Player "+name+"'s"+" turn");
         out.println(btv1.displayMyOwnBoard());
         String s="Player "+name+": you are going to place the following ships (which are all\n" +
                 "rectangular). For each ship, type the coordinate of the upper left\n" +
@@ -74,6 +89,7 @@ public class TextPlayer {
         }
 
     }
+    /**One step of the placement plase*/
     public void doOnePlacement(String shipName, Function<Placement, Ship<Character>> createFn) throws IOException {
         while(true){
             try{
@@ -88,50 +104,50 @@ public class TextPlayer {
                     }
                 }
                 BoardTextView view=new BoardTextView(theBoard);
+                out.println("Current ocean:");
                 out.print(view.displayMyOwnBoard());
                 break;
-            }catch(Exception e){
-                //out.println(e.printStackTrace(););
-                out.println("The placement is invalid! It does not have a correct format!");
+            }catch(IllegalArgumentException e){
+               out.println("The placement is invalid! It does not have a correct format!");
             }
         }
     }
+    /**Set up ship creation functions*/
     protected void setupShipCreationMap(){
         shipCreationFns.put("Submarine", (p) -> shipFactory.makeSubmarine(p));
         shipCreationFns.put("Destroyer", (p) -> shipFactory.makeDestroyer(p));
         shipCreationFns.put("Battleship", (p) -> shipFactory.makeBattleship(p));
         shipCreationFns.put("Carrier", (p) -> shipFactory.makeCarrier(p));
     }
-
+    /**Initialize ship list*/
     protected void setupShipCreationList(){
         shipsToPlace.addAll(Collections.nCopies(2, "Submarine"));
         shipsToPlace.addAll(Collections.nCopies(3, "Destroyer"));
         shipsToPlace.addAll(Collections.nCopies(2, "Battleship"));
         shipsToPlace.addAll(Collections.nCopies(3, "Carrier"));
     }
+    /**Check if this player has lost
+     * @return the boolean variable state whether the user has lost*/
     public boolean check_lost(){
         return theBoard.allSunk();
     }
+    /**The method for the user to play one turn
+     * @param enemy the enemy player
+     * @throws IOException when calling other method possibly*/
     public void playOneTurn(TextPlayer enemy) throws IOException{
        BoardTextView myView=new BoardTextView(this.theBoard);
        BoardTextView enemyView=new BoardTextView(enemy.theBoard);
-       out.println("Player "+name+"'s"+"turn");
+       out.println("Player "+name+"'s"+" turn");
        String myHeader="Your ocean";
        String enemyHeader="Player "+enemy.name+"'s"+"ocean";
-       myView.displayMyBoardWithEnemyNextToIt(enemyView,myHeader,enemyHeader);
+       out.println(myView.displayMyBoardWithEnemyNextToIt(enemyView,myHeader,enemyHeader));
        //Coordinate prompt Check.
         while(true){
             try{
-                while(true){
-                    Coordinate fireCor=readCoordinate("Please input the coordinate you want to fire at:");
-                    if(enemy.theBoard.fireAt(fireCor)!=null){
-                        out.println(enemy.theBoard.fireAt(fireCor));
-                    }else{
-                        break;
-                    }
-                }
+                Coordinate fireCor=readCoordinate("Please input the coordinate you want to fire at:");
+                out.println(enemy.theBoard.fireAt(fireCor));
                 break;
-            }catch(Exception e){
+            }catch(IllegalArgumentException e){
                 out.println("That coordinate is invalid: it does not have the correct format.");
             }
         }

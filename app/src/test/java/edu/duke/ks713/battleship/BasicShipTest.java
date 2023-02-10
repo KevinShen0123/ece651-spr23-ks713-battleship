@@ -6,8 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**The tests in this file aims to test the functions in BasicShip class, but because this class is abstract,when initialize with its subclasses*/
+/**The tests in this file aims to test the functions in BasicShip class, but because this class is abstract, initialize ship with its subclasses*/
 class BasicShipTest {
+    /**This method test the occupycoordinate method*/
 @Test
 public void test_coordinate_occupy(){
     Coordinate upperLeft=new Coordinate(1,1);
@@ -21,6 +22,7 @@ public void test_coordinate_occupy(){
     assertTrue(d);
     assertFalse(e);
 }
+/**This method test isSunk method*/
 @Test
 public void test_sunk(){
     Coordinate upperLeft=new Coordinate(1,1);
@@ -35,6 +37,7 @@ public void test_sunk(){
     assertTrue(a);
     assertFalse(h);
 }
+/**This method test the record hit at method*/
 @Test
 public void test_record_hit_at(){
     Coordinate upperLeft=new Coordinate(1,1);
@@ -53,6 +56,7 @@ public void test_record_hit_at(){
     assertThrows(IllegalArgumentException.class,()->mship.recordHitAt(new Coordinate(10,1)));
     assertThrows(IllegalArgumentException.class,()->mship.recordHitAt(new Coordinate(20,1)));
 }
+/**This method test the was hit at method*/
 @Test
 public void test_was_hit_at(){
     Coordinate upperLeft=new Coordinate(1,1);
@@ -68,6 +72,7 @@ public void test_was_hit_at(){
     assertThrows(IllegalArgumentException.class,()->mship.wasHitAt(new Coordinate(10,1)));
     assertThrows(IllegalArgumentException.class,()->mship.wasHitAt(new Coordinate(20,1)));
 }
+/**This method test the get display info method*/
 @Test
 public void test_get_display_info_at(){
     Coordinate upperLeft=new Coordinate(1,1);
@@ -85,6 +90,7 @@ public void test_get_display_info_at(){
     assertThrows(IllegalArgumentException.class,()->mship.getDisplayInfoAt(new Coordinate(10,1),false));
     assertThrows(IllegalArgumentException.class,()->mship.getDisplayInfoAt(new Coordinate(20,1),true));
 }
+/**This method test the get coordinate method*/
 @Test
 public void test_get_coordinate(){
     Coordinate upperLeft=new Coordinate(1,1);

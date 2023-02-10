@@ -58,7 +58,7 @@ public class BoardTextView {
                 String[]ship_letters=new String[the_board_to_display.getWidth()];
                 for(int p=0;p<ship_letters.length;p++){
                     Coordinate cor=new Coordinate(k,p);
-                    if(the_board_to_display.whatIsAtForSelf(cor)!=null){
+                    if(getSquareFn.apply(cor)!=null){
                         ship_letters[p]=Character.toString(getSquareFn.apply(cor));
                     }
                 }
@@ -125,7 +125,7 @@ public class BoardTextView {
         String myViewDisplay=this.displayMyOwnBoard();
         String enemyViewDisplay=enemyView.displayEnemyBoard();
         String []myViewDisplayLines=myViewDisplay.split("\n");
-        String[]enemyViewDisplayLines=myViewDisplay.split("\n");
+        String[]enemyViewDisplayLines=enemyViewDisplay.split("\n");
         ArrayList<String> lines=new ArrayList<>();
         String myH="     "+myHeader;
         int start_value=5+myHeader.length();

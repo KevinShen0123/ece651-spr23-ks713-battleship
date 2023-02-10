@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Iterator;
-
+/**This class is about the test of the functions in rectangleship class*/
 class RectangleShipTest {
+    /**This test method is about the test of makeCoords function in rectangleship class*/
   @Test
   public void first_test(){
       Coordinate uLeft=new Coordinate(1,2);
@@ -24,6 +25,7 @@ class RectangleShipTest {
           assertTrue(b);
       }
   }
+  /**This test method is about testing the getname function and oocupiescoordinats function in rectangelship class*/
     @Test
     public void second_test(){
      Coordinate start=new Coordinate(1,2);
@@ -37,12 +39,14 @@ class RectangleShipTest {
      assertTrue(c);
      assertTrue(d);
     }
+    /**This method is about testing the getname function */
     @Test
     public void third_test(){
       Coordinate uLeft=new Coordinate(1,2);
       RectangleShip<Character> rec=new RectangleShip<Character>(uLeft,'S','*');
       assertEquals("testship",rec.getName());
     }
+    /**This method is about testing the occupiesCoordinates function*/
     @Test
     public void fourth_test(){
         Coordinate start=new Coordinate(1,2);

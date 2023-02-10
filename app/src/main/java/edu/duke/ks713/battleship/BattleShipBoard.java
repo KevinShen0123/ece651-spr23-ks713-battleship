@@ -1,9 +1,8 @@
 package edu.duke.ks713.battleship;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
+/**This class is the description of board*/
 public class BattleShipBoard<T> implements Board<T> {
     private final int width;
     private final int height;
@@ -67,6 +66,11 @@ public class BattleShipBoard<T> implements Board<T> {
                 return s.getDisplayInfoAt(where,self);
             }
         }
+        if(!self){
+            if(enemyMisses.contains(where)){
+                return missInfo;
+            }
+        }
         return null;
     }
     /**get the display info at specific position for self board
@@ -88,7 +92,7 @@ public class BattleShipBoard<T> implements Board<T> {
         for(Ship<T> ship:myShips){
             if(ship.occupiesCoordinates(c)){
                 ship.recordHitAt(c);
-                return "You hit a"+ship.getName()+"!";
+                return "You hit a "+ship.getName()+"!";
             }
         }
         enemyMisses.add(c);

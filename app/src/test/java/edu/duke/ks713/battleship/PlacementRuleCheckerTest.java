@@ -1,7 +1,9 @@
 package edu.duke.ks713.battleship;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+/**This class is about testing the function of placement rule checkers*/
 public class PlacementRuleCheckerTest {
+    /**This method test the inbound and no collision placement rule checker*/
     @Test
     public void inbound_collision_test() {
         Board<Character> battle = new BattleShipBoard<>(10, 20, 'X');

@@ -1,7 +1,7 @@
 package edu.duke.ks713.battleship;
 
 import java.util.HashMap;
-
+/**This class serves as the description and implementation of ships' functions*/
 public abstract class BasicShip<T>implements Ship<T>{
     protected ShipDisplayInfo<T> myDisplayInfo;
     protected ShipDisplayInfo<T> enemyDisplayInfo;

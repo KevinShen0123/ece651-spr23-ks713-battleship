@@ -1,5 +1,5 @@
 package edu.duke.ks713.battleship;
-
+/**This class constructs the corrdinate and also handles important related functions*/
 public class Coordinate {
     private final int row;
     private final int column;
